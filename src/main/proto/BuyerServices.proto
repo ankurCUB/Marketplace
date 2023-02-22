@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+import 'Common.proto';
+
+option java_multiple_files = true;
+option java_package = "com.example.DistributedAssignment.services";
+option java_outer_classname = "BuyerServices";
+option objc_class_prefix = "HLW";
+
+service BuyerItemServices {
+  rpc getBuyerPurchaseHistory(UserID) returns (stream PurchaseHistoryResponse) {}
+  rpc provideFeedback(FeedbackRequest) returns (Void) {}
+  rpc searchItemsForSale(SearchRequest) returns (stream SaleItem) {}
+}
+
+message SearchRequest {
+  int32 category = 1;
+  string keywords = 2;
+}
+
+message FeedbackRequest{
+  int32 purchaseID = 1;
+  int32 likeOrDislike = 2;
+}
+
+message PurchaseHistoryResponse {
+  int32 itemID = 1;
+  int32 quantity = 2;
+  int64 timestamp = 3;
+  int32 purchaseID = 4;
+  float feedback = 5;
+}
+
+//"itemID", "quantity", "timestamp" , "purchaseID", "feedback"
