@@ -41,8 +41,3 @@ bin/
 
 ### Mac OS ###
 .DS_Store
-
-/src/main/java/customerDB/CustomerDB.db
-/src/main/java/customerDB/CustomerDB.db-journal
-/src/main/java/productDB/ProductDB.db
-/src/main/java/productDB/ProductDB.db-journal
