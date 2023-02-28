@@ -1,0 +1,18 @@
+Single server, client
+
+average = 612 ms
+
+10 server, client
+
+average = 43121 ms
+
+The difference in these times can be attributed to queing on the server for requests.
+
+100 server, client
+
+average = 365000 ms
+
+
+for 1000 requests per client
+
+This can again be attributed to wait times for in the server queues. The time grows exponentially

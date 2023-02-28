@@ -1,2 +1,4 @@
 rootProject.name = 'assignmentCopy'
+include 'common', 'rest_seller'
+include 'rest_buyer'
 
