@@ -14,7 +14,7 @@ public interface BuyersInterface {
     String removeItemFromShoppingCart(int userID, int itemID, int quantity);
     String clearShoppingCart(int buyerID);
     List<SaleItemPojo> displayShoppingCart(int buyerID);
-    String makePurchase();
+    String makePurchase(int userID);
     List<PurchaseHistoryPojo> getBuyerPurchaseHistory(int buyerID);
     String provideFeedback(int purchaseID, int feedback);
     List<SaleItemPojo> searchItemsForSale(int category, String keywords);

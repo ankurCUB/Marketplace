@@ -93,8 +93,21 @@ public class ServerSideBuyersInterface implements BuyersInterface, GRPCClient {
     }
 
     @Override
-    public String makePurchase() {
-        return null;
+    public String makePurchase(int userID) {
+        List<SaleItemPojo> saleItems = displayShoppingCart(userID);
+        clearShoppingCart(userID);
+        for (SaleItemPojo saleItem: saleItems) {
+            RemoveItemFromSaleRequest removeItemFromSaleRequest = RemoveItemFromSaleRequest
+                    .newBuilder()
+                    .setItemID(saleItem.getItemID())
+                    .setSellerID(saleItem.getSellerID())
+                    .setQuantity(saleItem.getQuantity())
+                    .build();
+            saleItemServicesBlockingStub.removeItemFromSale(removeItemFromSaleRequest);
+            // TODO: Add Purchase History
+        }
+
+        return "{}";
     }
 
     @Override

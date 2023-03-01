@@ -100,7 +100,7 @@ public class ClientSideBuyersInterface extends Client implements BuyersInterface
     }
 
     @Override
-    public String makePurchase() {
+    public String makePurchase(int userID) {
         return null;
     }
 

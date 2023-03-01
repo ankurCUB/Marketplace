@@ -2,6 +2,9 @@ package com.example.rest_buyer;
 
 import buyer.ServerSideBuyersInterface;
 import com.example.DistributedAssignment.services.UserID;
+import com.example.consumingwebservice.wsdl.CreditCardDetails;
+import com.example.consumingwebservice.wsdl.TransactionResponse;
+import com.example.consumingwebservice.wsdl.TransactionsStatus;
 import com.example.rest_buyer.RPCExceptions.SellerNotFoundError;
 import com.example.rest_buyer.dataModel.*;
 import common.PurchaseHistoryPojo;
@@ -86,6 +89,19 @@ public class RestBuyerController {
     @PostMapping("/buyers/feedback/{purchaseID}/{feedback}")
     void provideFeedback(@PathVariable int feedback, @PathVariable int purchaseID){
         serverSideBuyersInterface.provideFeedback(purchaseID, feedback);
+    }
+
+    @PostMapping("buyers/transaction")
+    void makePurchase(@RequestBody CreditCardDetailsDataModel creditCardDetailsDataModel){
+        CreditCardDetails details = new CreditCardDetails();
+        details.setName(creditCardDetailsDataModel.getName());
+        details.setNumber(creditCardDetailsDataModel.getCardNumber());
+        details.setExpirationDate(creditCardDetailsDataModel.getExpirationDate());
+        TransactionsClient client = new TransactionsClient();
+        TransactionResponse response = client.sendTransactionRequest(details);
+        if (response.getTransactionStatus() == TransactionsStatus.YES){
+//            serverSideBuyersInterface.makePurchase(creditCardDetailsDataModel.getUserID());
+        }
     }
 
 }
